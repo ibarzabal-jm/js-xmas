@@ -25,7 +25,7 @@ function validarNombre(nombre){
 
 function validarCiudad(ciudad){
     if (ciudad.length === ''){
-        return 'Ciudad no seleccionada'
+        return 'Provincia no seleccionada'
     }
 
     return '';
@@ -42,6 +42,4 @@ function validarDescripcionRegalo(descripcionRegalo){
 
     return '';
 }
-
-
 
