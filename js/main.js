@@ -10,8 +10,8 @@ console.log(ciudad);
 console.log(comportamiento);
 console.log(descripcionRegalo);
 
-function validarNombre (nombre){
-    if (nombre.length < 2 ){
+function validarNombre(nombre){
+    if (nombre.length === 0 ){
         return 'Este campo debe tener al menos un caracter'
     }
 
@@ -21,3 +21,5 @@ function validarNombre (nombre){
 
     return '';
 }
+
+
