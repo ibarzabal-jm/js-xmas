@@ -1,7 +1,7 @@
 const $form = document.querySelector('#carta-a-santa');
 
 const nombre = $form.nombre.value;
-const ciudad = $form.ciduad.value;
+const ciudad = $form.ciudad.value;
 const comportamiento = $form.comportamiento.value;
 const descripcionRegalo = $form['descripcion-regalo'].value;
 
@@ -21,5 +21,27 @@ function validarNombre(nombre){
 
     return '';
 }
+
+
+function validarCiudad(ciudad){
+    if (ciudad.length === ''){
+        return 'Ciudad no seleccionada'
+    }
+
+    return '';
+}
+
+function validarDescripcionRegalo(descripcionRegalo){
+    if(descripcionRegalo.length >= 100){
+        return 'El campo es largo'
+    }
+
+    if(descripcionRegalo === ''){
+        return 'No puede estar vacío'
+    }
+
+    return '';
+}
+
 
 
