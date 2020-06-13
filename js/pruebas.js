@@ -10,6 +10,11 @@ function probarValidarNombre() {
           'Este campo debe tener cuanto mucho 50 caracteres',
       'Validar nombre no validó que el nombre sea menor a 50 caracteres',
   );
+
+  console.assert(
+      validarNombre('Juan Manuel') === '',
+      'validar nombre fallo con un nombre válido'
+  )
 }
 
 probarValidarNombre();
