@@ -19,8 +19,14 @@ function validarNombre(nombre){
         return 'Este campo debe tener cuanto mucho 50 caracteres'
     }
 
+    if(!/^[A-z]+ [A-z]+$/.test(nombre)){
+        return 'El campo solo acepta letras'
+    }
+
     return '';
 }
+
+
 
 
 function validarCiudad(ciudad){
