@@ -1,14 +1,8 @@
 const $form = document.querySelector('#carta-a-santa');
+$form.onsubmit =validarFormulario;
 
-const nombre = $form.nombre.value;
-const ciudad = $form.ciudad.value;
-const comportamiento = $form.comportamiento.value;
-const descripcionRegalo = $form['descripcion-regalo'].value;
 
-console.log(nombre);
-console.log(ciudad);
-console.log(comportamiento);
-console.log(descripcionRegalo);
+
 
 function validarNombre(nombre){
     if (nombre.length === 0 ){
@@ -46,6 +40,26 @@ function validarDescripcionRegalo(descripcionRegalo){
         return 'No puede estar vacío'
     }
 
+    if( !/^[A-z0-9 ,\.]+$/.test(descripcionRegalo) ){
+        return "El campo descripcion solo puede tener numeros, letras o  signos de puntuación"
+    }
+
     return '';
 }
+
+
+
+function validarFormulario(event){
+    const $form = document.querySelector("'#carta-a-santa");
+    const errorNombre= validarNombre($form.nombre.value);
+    const ciudad = $form.ciudad.value;
+    const comportamiento = $form.comportamiento.value;
+    const descripcionRegalo = $form['descripcion-regalo'].value;
+
+    manejarErrores([errorNombre]);
+    
+
+    event.preventDefault();
+}
+
 
