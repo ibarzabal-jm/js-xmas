@@ -7,7 +7,7 @@ function validarNombre(nombre){
         return 'Este campo debe tener cuanto mucho 50 caracteres'
     }
 
-    if(!/^[A-z]+ [A-z]+$/.test(nombre)){
+    if(!/^[a-z]+$/i.test(nombre)){
         return 'El campo solo acepta letras'
     }
 
@@ -47,6 +47,9 @@ function validarFormulario(event){
     
     const $form = document.querySelector("#carta-a-santa");
 
+    resetearErrores();
+    
+
     const nombre = $form.nombre.value;
     const ciudad = $form.ciudad.value;
     const descripcionRegalo = $form['descripcion-regalo'].value;
@@ -62,26 +65,57 @@ function validarFormulario(event){
         'descripcion-regalo': errorDescripcionRegalo
     }
     
-    manejarErrores(errores);
+    let esExito = manejarErrores(errores) === 0;
+
+    if(esExito){
+        $form.className='oculto';
+        document.querySelector('#exito').className = '';
+    }
 
     event.preventDefault();
 
 }
 
-function manejarErrores(errores){
-    
-    const llaves = Object.keys(errores);
-    console.log(llaves);
+function resetearErrores(){
+    const $error = document.querySelectorAll('#errores li');
 
-   llaves.forEach(function(llave){
-       const error = errores[llave];
-       if(error){
-           $form[llave].className="error";
-       }else{
-           $form[llave].className="";
-       }
-   });
+    /*
+    for(let i = 0; i<$error.length; i++){
+        $error[i].remove();
+    }
+    */
+  
+    $error.forEach(element => {
+        element.remove();
+    });
+}
+
+function manejarErrores(errores){    
+    const llaves = Object.keys(errores);
+    //console.log(llaves);
+    const $errores = document.querySelector('#errores');
     
+    let cantidadErrores = 0;
+
+
+    llaves.forEach(function(llave){
+        const error = errores[llave];
+
+        if(error){
+            cantidadErrores++;
+            $form[llave].className="error";
+
+            const $error = document.createElement('li');
+            $error.innerText = error;
+            $errores.appendChild($error);
+
+        }else{
+            $form[llave].className="";
+        }
+    });
+    
+
+    return cantidadErrores;
 
 }
 
